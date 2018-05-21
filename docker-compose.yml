@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+
+  webhook:
+    build:
+      context: .
+    image: "webhook"
+    ports:
+      - 4567
+    environment:
+      LETSENCRYPT_HOST: webhook.ccmcomputing.net
+      LETSENCRYPT_EMAIL: cole@ccmcomputing.net
+      VIRTUAL_HOST: webhook.ccmcomputing.net
+      VIRTUAL_PORT: 4567
+    mem_limit: 8gb
+    memswap_limit: 8gb
+    mem_reservation: 4gb
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
